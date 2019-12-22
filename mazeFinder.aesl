@@ -26,11 +26,12 @@ onevent button.center
 	callsub goForward
 	
 sub goForward
-	motor.left.target = 200
-	motor.right.target = 200
-	if prox.horizontal[2] > 2000 then
-		callsub rotate90ACW
+	while prox.horizontal[2] &lt; 2000 do
+		motor.left.target = 200
+		motor.right.target = 200
 	end
+	callsub rotate90ACW
+	
 
 sub rotate180CW
 	timer.period[0] = turnTime180
