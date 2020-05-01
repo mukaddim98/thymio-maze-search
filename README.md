@@ -1,1 +1,1 @@
-# thymioMazeSearch
+# thymio-maze-search
