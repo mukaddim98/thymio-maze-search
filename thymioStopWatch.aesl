@@ -1,0 +1,56 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+<constant value="0" name="STOP"/>
+<constant value="1" name="START"/>
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">var counter = 0
+var state = STOP
+
+timer.period[0] = 0
+
+onevent buttons
+when button.center == 1 do
+	if state ==  STOP  then
+		callsub start
+	elseif state == START then
+		callsub stop		
+	end	
+end
+
+onevent button.backward
+	callsub reset
+
+onevent timer0
+	counter++
+	callsub start
+
+sub start
+	state = START
+	timer.period[0] = 100
+	
+sub stop
+	state = STOP
+	timer.period[0] = 0
+	
+sub reset
+	state = STOP
+	timer.period[0] = 0
+	counter = 0
+
+
+</node>
+
+
+</network>
